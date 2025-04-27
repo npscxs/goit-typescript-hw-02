@@ -1,8 +1,10 @@
 import css from "./SearchBar.module.css";
 import { Field, Form, Formik } from "formik";
+import { JSX } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { SearchBarProps, FormValues } from "./SearchBar.types";
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar({ onSearch }: SearchBarProps): JSX.Element {
   const notify = () => toast("Please enter text to search for images.");
 
   return (
@@ -10,7 +12,7 @@ export default function SearchBar({ onSearch }) {
       <Toaster />
       <Formik
         initialValues={{ search: "" }}
-        onSubmit={(values, actions) => {
+        onSubmit={(values: FormValues, actions) => {
           if (!values.search.trim()) {
             notify();
           } else {

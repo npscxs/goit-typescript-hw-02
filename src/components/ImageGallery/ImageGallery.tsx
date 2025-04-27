@@ -1,8 +1,13 @@
-// import { Linter } from "eslint";
 import css from "./ImageGallery.module.css";
 import ImageCard from "../ImageCard/ImageCard";
+import { JSX } from "react";
 
-export default function ImageGallery({ articles, onImageClick }) {
+import { ImageGalleryProps } from "./ImageGallery.types";
+
+export default function ImageGallery({
+  articles,
+  onImageClick,
+}: ImageGalleryProps): JSX.Element {
   return (
     <ul className={css.gallery}>
       {articles.map((article) => (

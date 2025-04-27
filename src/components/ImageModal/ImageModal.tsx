@@ -1,7 +1,12 @@
-import React from "react";
+import { JSX } from "react";
 import ReactModal from "react-modal";
+import { ImageModalProps } from "./ImageModal.types";
 
-export default function ImageModal({ isOpen, onRequestClose, imageUrl }) {
+export default function ImageModal({
+  isOpen,
+  onRequestClose,
+  imageUrl,
+}: ImageModalProps): JSX.Element {
   return (
     <ReactModal
       isOpen={isOpen}

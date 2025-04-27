@@ -1,32 +1,40 @@
 import "./App.module.css";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import ImageGallery from "../ImageGallery/ImageGallery";
-import ImageModal from "../ImageModal/ImageModal";
+import ImageModal from "../ImageModal/ImageModal.jsx";
 import Loader from "../Loader/Loader";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import SearchBar from "../SearchBar/SearchBar";
-import { fetchArticles } from "../ArticleServise";
+import { fetchArticles } from "../ArticleService";
 import { useEffect, useState } from "react";
+import { Article } from "./App.types";
+
+// interface Article {
+//   id: string;
+//   title: string;
+//   imageUrl: string;
+//   [key: string]: any; // Если есть дополнительные поля
+// }
 
 function App() {
-  const [articles, setArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [perPage, setPerPage] = useState(10);
-  const [topic, setTopic] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState("");
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [perPage, setPerPage] = useState<number>(10);
+  const [topic, setTopic] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<string>("");
 
   const handleLoadMore = () => {
     setPerPage(perPage + 10);
   };
 
-  const handleSearch = (searchWord) => {
+  const handleSearch = (searchWord: string) => {
     setTopic(searchWord);
     setPerPage(10);
   };
 
-  const openModal = (imageUrl) => {
+  const openModal = (imageUrl: string) => {
     setSelectedImage(imageUrl);
     setIsModalOpen(true);
   };
@@ -42,7 +50,7 @@ function App() {
       try {
         setError(false);
         setIsLoading(true);
-        const data = await fetchArticles(topic, perPage);
+        const data: Article[] = await fetchArticles(topic, perPage);
         setArticles(data);
       } catch (error) {
         setError(true);

@@ -1,5 +1,12 @@
+import { JSX } from "react";
 import css from "./ImageCard.module.css";
-export default function ImageCard({ image, alt, onClick }) {
+import { ImageCardProps } from "./ImageCard.types";
+
+export default function ImageCard({
+  image,
+  alt,
+  onClick,
+}: ImageCardProps): JSX.Element {
   return (
     <div>
       <img
