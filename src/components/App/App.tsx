@@ -9,13 +9,6 @@ import { fetchArticles } from "../ArticleService";
 import { useEffect, useState } from "react";
 import { Article } from "./App.types";
 
-// interface Article {
-//   id: string;
-//   title: string;
-//   imageUrl: string;
-//   [key: string]: any; // Если есть дополнительные поля
-// }
-
 function App() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
